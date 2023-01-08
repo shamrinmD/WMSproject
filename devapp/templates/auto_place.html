@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/auto_place.css">
+    <link rel="stylesheet" href="css/auto_place.css">
+{% endblock styles %}
+<body>
+{% block content %}
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+        <h4>Размещение</h4>
+        <div class="storage-table">
+            <table>
+                    <tr class="storage-header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Товар:</th>
+                        <th>Объем:</th>
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[8]}}</td>
+                        <td>{{n[9]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

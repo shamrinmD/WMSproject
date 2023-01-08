@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/waybills.css">
+    <link rel="stylesheet" href="css/waybills.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<form action="" method="POST">
+            <div class="add-waybill-content">
+                <div class="field">
+                    <label>Номер накладной</label>
+                    <input type="text" id="waybill_id" name="waybill_id" placeholder="XXXXXXXXXXXXXX" required >
+                </div>
+                <div class="field">
+                    <label>Дата оформления</label>
+                    <input type="date"  id="reg_date" name="reg_date" placeholder="YYYY-MM-DD" required >
+                </div>
+                <div class="field">
+                    <label>Описание</label>
+                    <input type="text" id="description" name="description" placeholder="Накладная прихода" required >
+                </div>
+                <div class="field">
+                    <label>Поставщик</label>
+                    <select id="contractor" name="contractor">
+                        {% for c in contractors %}
+                        <option value={{c[0]}}>{{c[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Создать накладную</button>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+    <h4>Накладные прихода</h4>
+        <div class="waybill-table">
+            <table>
+                    <tr class="waybill-header">
+                        <th>Номер накладной:</th>
+                        <th>Дата оформления:</th>
+                        <th>Описание:</th>
+                        <th>Поставщик:</th>
+                        <th>Ответственное лицо:</th>
+                        <th>Проведена:</th>
+                    </tr>
+                {% for w in waybill %}
+                    <tr>
+                        <td>{{w[0]}}</td>
+                        <td>{{w[1]}}</td>
+                        <td>{{w[2]}}</td>
+                        <td>{{w[3]}}</td>
+                        <td>{{w[4]}}</td>
+                        <td>{{w[5]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

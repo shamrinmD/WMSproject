@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/about_me.css">
+    <link rel="stylesheet" href="css/about_me.css">
+{% endblock styles %}
+<body>
+{% block content %}
+    <div class="info-block">
+        <div class="record">
+            <p>Фамилия:<div>{{ user_info[0] }}</div></p>
+            <p>Имя:<div>{{ user_info[1] }}</div></p>
+            <p>Отчество:
+            <div>{{ user_info[2] }}</div></p>
+            <p>Должность:
+            <div>{{ user_info[3] }}</div></p>
+            <p>Телефон:
+            <div>{{ user_info[4] }}</div></p>
+            <p>Почта:
+            <div>{{ user_info[5] }}</div></p>
+        </div>
+    </div>
+{% endblock content %}
+</body>

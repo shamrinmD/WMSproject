@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/warehouse.css">
+    <link rel="stylesheet" href="css/warehouse.css">
+{% endblock styles %}
+<body>
+{% block content %}
+{% if storekeeper == true %}
+<form action="" method="POST">
+            <div class="add-storage-address-content">
+                <div class="field">
+                    <label>Номер ячейки</label>
+                    <input type="number" min="1" id="cell_id" name="cell_id" placeholder="Номер ячейки" required >
+                </div>
+                <div class="field">
+                    <label>Номер стеллажа</label>
+                    <input type="number" min="1" id="shelf_id" name="shelf_id" placeholder="Номер стеллажа" required >
+                </div>
+                <div class="field">
+                    <label>Объем</label>
+                    <input type="number" min="0.001" step="0.001" id="volume" name="volume" placeholder="Объем X.XXX" required >
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Добавить адрес хранения</button>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+{% endif %}
+    <h4>Ячейки склада</h4>
+        <div class="storage-table">
+            <table>
+                    <tr class="storage-header">
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                        <th>Текущий объем:</th>
+                    </tr>
+                {% for t in table %}
+                    <tr>
+                        <td>{{t[0]}}</td>
+                        <td>{{t[1]}}</td>
+                        <td>{{t[2]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

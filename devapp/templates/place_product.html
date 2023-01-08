@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/place_storage.css">
+    <link rel="stylesheet" href="css/place_storage.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<form action="" method="POST">
+            <div class="add-storage-content">
+                <h4>Накладная {{waybill_id}}</h4>
+                <div class="field">
+                    <label>Серийный №</label>
+                    <select id="serial" name="serial">
+                        {% for n in nomenclature %}
+                        <option value={{n[0]}}>{{n[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Ячейка</label>
+                    <select id="cell" name="cell">
+                        {% for c in cell_select %}
+                        <option value={{c[0]}}>{{c[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Стеллаж</label>
+                    <select id="shelf" name="shelf">
+                        {% for s in shelf_select %}
+                        <option value={{s[0]}}>{{s[0]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Разместить</button>
+                <br></br>
+                <a class="set-storage" href="{{ url_for('auto_place', waybill_id=waybill_id, product_name=nomenclature[1][2]) }}">АвтоРазмещение</a>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+    <h4>Ячейки склада</h4>
+        <div class="storage-table">
+            <table>
+                    <tr class="storage-header">
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                        <th>Текущий объем:</th>
+                    </tr>
+                {% for st in storage %}
+                    <tr>
+                        <td>{{st[0]}}</td>
+                        <td>{{st[1]}}</td>
+                        <td>{{st[2]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    <h4>Номенклатура</h4>
+    <div class="storage-table">
+            <table>
+                    <tr class="storage-header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Товар:</th>
+                        <th>Объем:</th>
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[8]}}</td>
+                        <td>{{n[9]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

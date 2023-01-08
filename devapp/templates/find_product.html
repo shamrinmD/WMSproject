@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/find_product.css">
+    <link rel="stylesheet" href="css/find_product.css">
+{% endblock styles %}
+<body>
+{% block content %}
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+    <h4>Накладная: {{waybill_id}}</h4>
+    <h3>{{product_name}}</h3>
+    <form action="" method="POST">
+    <button value="Refresh Page" onClick="window.location.reload();">Освободить ячейки</button>
+    </form>
+    <div class="storage-table">
+            <table>
+                    <tr class="storage-header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Товар:</th>
+                        <th>Объем:</th>
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[4]}}</td>
+                        <td>{{n[5]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

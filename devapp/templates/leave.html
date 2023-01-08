@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/waybill_detail.css">
+    <link rel="stylesheet" href="css/waybill_detail.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<form action="" method="POST">
+            <div class="add-detail-content">
+                <div class="field">
+                    <label>Товар</label>
+                    <select id="product_code" name="product_code">
+                        {% for p in product %}
+                        <option value={{p[0]}}>{{p[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Накладная</label>
+                    <select id="waybill_id" name="waybill_id">
+                        {% for w in waybill %}
+                        <option value={{w[0]}}>{{w[0]}}, {{w[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Количество</label>
+                    <input type="number" min="1" id="quantity" name="quantity" placeholder="Кол-во" required >
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Добавить партию отгрузки</button>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+{% endblock %}
+</body>

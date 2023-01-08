@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/remnants.css">
+    <link rel="stylesheet" href="css/remnants.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<form action="" method="POST">
+            <div class="remnants-content">
+                <div class="field">
+                    <label>Товар</label>
+                    <select id="product_code" name="product_code">
+                        <option value=''></option>
+                        {% for p in products %}
+                        <option value={{p[0]}}>{{p[1]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="field">
+                    <label>Дата</label>
+                    <input type="date" id="date_remnant" name="date_remnant" placeholder="YYYY-MM-DDD" >
+                </div>
+                 <div class="field">
+                    <label>Сохранить как</label>
+                    <input type="text" id="directory" name="directory" placeholder="Директория" value="/Users/misya/Documents/Reports/Остатки.csv" required >
+                 </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Сохранить отчет</button>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+        <h4>Текущие остатки</h4>
+        <div class="remnants-table">
+            <table>
+                    <tr class="remnants-header">
+                        <th>Код товара:</th>
+                        <th>Наименование товара:</th>
+                        <th>Группа:</th>
+                        <th>Ед. измерения:</th>
+                        <th>Вес:</th>
+                        <th>Объем:</th>
+                        <th>Количество:</th>
+                    </tr>
+                {% for r in remnant %}
+                    <tr>
+                        <td>{{r[0]}}</td>
+                        <td>{{r[1]}}</td>
+                        <td>{{r[2]}}</td>
+                        <td>{{r[3]}}</td>
+                        <td>{{r[4]}}</td>
+                        <td>{{r[5]}}</td>
+                        <td>{{r[6]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

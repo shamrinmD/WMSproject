@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/contractors.css">
+    <link rel="stylesheet" href="css/contractors.css">
+{% endblock styles %}
+<body>
+{% block content %}
+{% if storekeeper == false %}
+<form action="" method="POST">
+            <div class="add-contractor-content">
+                <div class="field">
+                    <label>Код ОКПО</label>
+                    <input type="text" id="org_code" name="org_code" placeholder="Код ОКПО" required >
+                </div>
+                <div class="field">
+                    <label>Наименование организации</label>
+                    <input type="text" id="org_name" name="org_name" placeholder="Наименование организации" required >
+                </div>
+                <div class="field">
+                    <label>Юр. адрес</label>
+                    <input type="text" id="org_address" name="org_address" placeholder="Юр. адрес" required >
+                </div>
+                <div class="field">
+                    <label>Город</label>
+                    <input type="text" id="city" name="city" placeholder="Город" required >
+                </div>
+                <div class="field">
+                    <label>Телефон</label>
+                    <input type="text" id="org_phone" name="org_phone" placeholder="Телефон" required >
+                </div>
+                <div class="field">
+                    <label>Почта</label>
+                    <input type="text" id="email" name="email" placeholder="Почта" required >
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Добавить контрагента</button>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+{% endif %}
+    <h4>Контрагенты</h4>
+        <div class="contractor-table">
+            <table>
+                    <tr class="contractor-header">
+                        <th>Код ОКПО:</th>
+                        <th>Наименование организации:</th>
+                        <th>Юр. адрес:</th>
+                        <th>Город:</th>
+                        <th>Телефон:</th>
+                        <th>Почта:</th>
+                    </tr>
+                {% for t in table %}
+                    <tr>
+                        <td>{{t[0]}}</td>
+                        <td>{{t[1]}}</td>
+                        <td>{{t[2]}}</td>
+                        <td>{{t[3]}}</td>
+                        <td>{{t[4]}}</td>
+                        <td>{{t[5]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

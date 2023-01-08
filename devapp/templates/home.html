@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+<body xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% block content %}
+    {% if loggedin and purchasing_manager %}
+        <div class="methods">
+            <div class="methods buttons" align="center">
+                <form>
+                    <a href="{{ url_for('arrival_waybills') }}">Накладные прихода</a>
+                    <a href="{{ url_for('remnants') }}">Остатки товара</a>
+                </form>
+            </div>
+        </div>
+    {% elif loggedin and sales_manager %}
+        <div class="methods buttons" align="center">
+            <form>
+                <a href="{{ url_for('sale_waybills') }}">Накладные ухода</a>
+                <a href="{{ url_for('remnants') }}">Остатки товара</a>
+            </form>
+        </div>
+    {% elif loggedin and storekeeper %}
+        <div class="methods buttons" align="center">
+            <form>
+                <a href="{{ url_for('accept_product') }}">Приемка товара</a>
+                <a href="{{ url_for('send_product') }}">Отгрузка товара</a>
+            </form>
+        </div>
+    {% endif %}
+    {% if loggedin and purchasing_manager %}
+        <h3>Приход</h3>
+        <a class="add-button" href="{{ url_for('add_supply') }}">Добавить</a>
+        <div class="table-container">
+            <table>
+                    <tr class="header">
+                        <th>Дата:</th>
+                        <th>Поставщик:</th>
+                        <th>Накладная:</th>
+                        <th>Проведена:</th>
+                        <th>Товар:</th>
+                        <th>Ед. измерения:</th>
+                        <th>Количество:</th>
+                        <th>Вес:</th>
+                        <th>Объем:</th>
+                    </tr>
+                {% for t in table %}
+                    <tr>
+                        <td>{{t[0]}}</td>
+                        <td>{{t[1]}}</td>
+                        <td> <a href="{{ url_for('show_arrival_waybill', waybill_id=t[2]) }} ">{{t[2]}}</a></td>
+                        <td>{{t[3]}}</td>
+                        <td>{{t[4]}}</td>
+                        <td>{{t[5]}}</td>
+                        <td>{{t[6]}}</td>
+                        <td>{{t[7]}}</td>
+                        <td>{{t[8]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+    {% if loggedin and sales_manager %}
+        <h3>Расход</h3>
+        <a  class="add-button" href="{{ url_for('add_leave') }}">Добавить</a>
+        <div class="table-container">
+            <table>
+                    <tr class="header">
+                        <th>Дата:</th>
+                        <th>Поставщик:</th>
+                        <th>Накладная:</th>
+                        <th>Проведена:</th>
+                        <th>Товар:</th>
+                        <th>Ед. измерения:</th>
+                        <th>Количество:</th>
+                        <th>Вес:</th>
+                        <th>Объем:</th>
+                    </tr>
+                {% for t in table %}
+                    <tr>
+                        <td>{{t[0]}}</td>
+                        <td>{{t[1]}}</td>
+                        <td><a href="{{ url_for('show_sale_waybill', waybill_id=t[2]) }} ">{{t[2]}}</a></td>
+                        <td>{{t[3]}}</td>
+                        <td>{{t[4]}}</td>
+                        <td>{{t[5]}}</td>
+                        <td>{{t[6]}}</td>
+                        <td>{{t[7]}}</td>
+                        <td>{{t[8]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+    {% if loggedin and storekeeper %}
+        <h3>Номенклатура</h3>
+        <div class="table-container">
+            <table>
+                    <tr class="header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Наименование товара:</th>
+                        <th>Объем:</th>
+                        <th>Дата поступления:</th>
+                        <th>Документ поступления:</th>
+                        <th>Дата ухода:</th>
+                        <th>Документ ухода:</th>
+                        <th>Ячейка:</th>
+                        <th>Стеллаж:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[4]}}</td>
+                        <td>{{n[5]}}</td>
+                        <td>{{n[6]}}</td>
+                        <td>{{n[7]}}</td>
+                        <td>{{n[8]}}</td>
+                        <td>{{n[9]}}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
+</body>

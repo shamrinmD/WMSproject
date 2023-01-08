@@ -1,0 +1,116 @@
+table {
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.product-table {
+  float:left;
+  width: 700px;
+  height: 500px;
+  overflow: scroll;
+  border: 2px solid #ddd;
+}
+
+table th,
+table td {
+  white-space: nowrap;
+  padding: 10px 20px;
+  font-family: Arial;
+}
+
+table tr th:first-child,
+table td:first-child {
+  position: sticky;
+  width: 100px;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+table tr th:first-child {
+  z-index: 11;
+}
+
+table tr th {
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background: #fff;
+}
+
+table tr.header, tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+form {
+    float: right;
+    justify-content: right;
+}
+
+select {
+    font-family: sans-serif;
+    width: 250px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #98FB98;
+    outline: none;
+    font-family: sans-serif;
+    color: #000000;
+    border: none;
+}
+.add-product-content {
+    width: 350px;
+    background-color: #3CB371;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.field label {
+    font-family: sans-serif;
+    font-size: 0.7em;
+    color: #000000;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.field input {
+    font-family: sans-serif;
+    width: 250px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background-color: #98FB98;
+    outline: none;
+    font-family: sans-serif;
+    color: #000000;
+    border: none;
+}
+
+
+button {
+    padding: 10px 15px;
+    font-family: sans-serif;
+    background: #00FF7F;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .2s;
+    font-size: 0.7em;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+button:hover {
+    box-shadow: 0px 0px 3px 1px rgba(157, 135, 222, 0.7);
+}

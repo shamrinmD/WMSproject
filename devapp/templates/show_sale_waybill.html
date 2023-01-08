@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/show_sale_waybill.css">
+    <link rel="stylesheet" href="css/show_sale_waybill.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<div class="sale_waybill">
+    <div class="waybill-name">
+        <h3>{{ waybill[2] }}</h3>
+        <h3>{{ waybill[0] }}</h3>
+    </div>
+    <div class="waybill-block">
+            <p>Дата оформления: {{ waybill[1] }}</p>
+            <p>Получатель: {{ waybill[3] }}</p>
+            <p>Ответственное лицо: {{ waybill[4] }}</p>
+            <p>Проведена: {{ waybill[5] }}</p>
+        </div>
+    </div>
+</div>
+        <div class="leave-table">
+            <table>
+                    <tr class="leave-header">
+                        <th>Товар:</th>
+                        <th>Ед. измерения:</th>
+                        <th>Количество:</th>
+                        <th>Масса:</th>
+                        <th>Объем:</th>
+                    </tr>
+                {% for l in leave %}
+                    <tr>
+                        <td>{{l[0]}}</td>
+                        <td>{{l[1]}}</td>
+                        <td>{{l[2]}}</td>
+                        <td>{{l[3]}}</td>
+                        <td>{{l[4]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="leave-table">
+            <table>
+                    <tr class="leave-header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Товар:</th>
+                        <th>Объем:</th>
+                        <th>Дата отгрузки:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[4]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

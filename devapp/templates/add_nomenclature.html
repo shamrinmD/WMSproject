@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/nomenclature.css">
+    <link rel="stylesheet" href="css/nomenclature.css">
+{% endblock styles %}
+<body>
+{% block content %}
+<form action="" method="POST">
+            <div class="add-nomenclature-content">
+                <h4>Накладная {{waybill_id}}</h4>
+                <div class="field">
+                    <label>Серийный номер</label>
+                    <input type="text" id="serial" name="serial" placeholder="Серийный номер" required >
+                </div>
+                <div class="field">
+                    <label>Товар: {{product_name}}</label>
+                </div>
+                <div class="field">
+                    <label>Количество: {{quantity}}</label>
+                </div>
+                <button value="Refresh Page" onClick="window.location.reload();">Добавить товар</button>
+                <br></br>
+                <a class="set-storage" href="{{ url_for('place_product', waybill_id=waybill_id, product_name=product_name) }}">Размещение</a>
+            </div>
+        </form>
+        {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+    <h4>Номенклатура</h4>
+    <div class="nomenclature-table">
+            <table>
+                    <tr class="nomenclature-header">
+                        <th>Серийный номер:</th>
+                        <th>Группа:</th>
+                        <th>Товар:</th>
+                        <th>Объем:</th>
+                        <th>Дата поступления:</th>
+                    </tr>
+                {% for n in nomenclature %}
+                    <tr>
+                        <td>{{n[0]}}</td>
+                        <td>{{n[1]}}</td>
+                        <td>{{n[2]}}</td>
+                        <td>{{n[3]}}</td>
+                        <td>{{n[4]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

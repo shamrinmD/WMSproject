@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/send_product.css">
+    <link rel="stylesheet" href="css/send_product.css">
+{% endblock styles %}
+<body>
+{% block content %}
+    <h3>Расход</h3>
+        <div class="leave-table">
+            <table>
+                    <tr class="leave-header">
+                        <th>Дата:</th>
+                        <th>Поставщик:</th>
+                        <th>Накладная:</th>
+                        <th>Товар:</th>
+                        <th>Ед. измерения:</th>
+                        <th>Количество:</th>
+                        <th>Вес:</th>
+                        <th>Объем:</th>
+                    </tr>
+                {% for l in leave %}
+                    <tr>
+                        <td>{{l[0]}}</td>
+                        <td>{{l[1]}}</td>
+                        <td> <a href="{{ url_for('find_product', waybill_id=l[2], product_name=l[4]) }} ">{{l[2]}}</a></td>
+                        <td>{{l[4]}}</td>
+                        <td>{{l[5]}}</td>
+                        <td>{{l[6]}}</td>
+                        <td>{{l[7]}}</td>
+                        <td>{{l[8]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+{% endblock %}
+</body>

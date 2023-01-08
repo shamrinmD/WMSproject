@@ -1,0 +1,25 @@
+.info-block{
+    background-color: #3CB371;
+    width: 30%;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px;
+    border-radius: 8px;
+}
+.record{
+    font-family: sans-sherif;
+    font-size: 1.2em;
+    text-align: center;
+    background-color: #98FB98;
+    width: 60%;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.record p {
+    font-family: sans-sherif;
+    font-weight: bold;
+}

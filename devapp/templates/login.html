@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/login.css">
+    <link rel="stylesheet" href="css/login.css">
+{% endblock styles %}
+<body>
+{% block content %}
+    <div class="form_auth_block">
+      <div class="form_auth_block_content" align="center">
+          <p class="form_auth_block_head_text" align="center"><h2>Авторизация</h2></p>
+          <form action="" method="POST">
+              <label>Введите Логин</label>
+              <input type="text" id="auth_login" name="auth_login" placeholder="Введите логин" required >
+              <br/><br/>
+              <label>Введите Пароль</label>
+              <input type="password" id="auth_password" name="auth_password" placeholder="Введите пароль" required >
+              <br/><br/>
+              <button class="form_auth_button" type="submit" name="form_auth_submit">Войти</button>
+              {% with messages = get_flashed_messages() %}
+                   {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                   {% endif %}
+                {% endwith %}
+          </form>
+      </div>
+    </div>
+{% endblock %}
+</body>
